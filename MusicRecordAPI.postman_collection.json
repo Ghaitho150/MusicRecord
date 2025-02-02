@@ -1,0 +1,165 @@
+{
+  "info": {
+    "name": "MusicRecord API",
+    "_postman_id": "12345678-1234-1234-1234-123456789012",
+    "description": "Collection to test the ArtistsController API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Upload Artists",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "[\n  {\n    \"Id\": 1,\n    \"Name\": \"Artist 1\",\n    \"Rate\": 10.5,\n    \"Streams\": 1000,\n    \"PayoutComplete\": false\n  },\n  {\n    \"Id\": 2,\n    \"Name\": \"Artist 2\",\n    \"Rate\": 12.0,\n    \"Streams\": 1500,\n    \"PayoutComplete\": true\n  }\n]"
+        },
+        "url": {
+          "raw": "https://localhost:7235/api/Artists/upload",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7235",
+          "path": [
+            "api",
+            "Artists",
+            "upload"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Artist",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"Id\": 3,\n  \"Name\": \"Artist 3\",\n  \"Rate\": 15.0,\n  \"Streams\": 2000,\n  \"PayoutComplete\": false\n}"
+        },
+        "url": {
+          "raw": "https://localhost:7235/api/Artists/create",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7235",
+          "path": [
+            "api",
+            "Artists",
+            "create"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Artists",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://localhost:7235/api/Artists",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7235",
+          "path": [
+            "api",
+            "Artists"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Artist by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://localhost:7235/api/Artists/1",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7235",
+          "path": [
+            "api",
+            "Artists",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Artist",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"Id\": 1,\n  \"Name\": \"Updated Artist 1\",\n  \"Rate\": 11.0,\n  \"Streams\": 1100,\n  \"PayoutComplete\": true\n}"
+        },
+        "url": {
+          "raw": "https://localhost:7235/api/Artists/1",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7235",
+          "path": [
+            "api",
+            "Artists",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Artist",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "https://localhost:7235/api/Artists/1",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7235",
+          "path": [
+            "api",
+            "Artists",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

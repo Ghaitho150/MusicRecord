@@ -1,0 +1,6 @@
+@MusicRecord.Server_HostAddress = http://localhost:5002
+
+GET {{MusicRecord.Server_HostAddress}}/artists/
+Accept: application/json
+
+###

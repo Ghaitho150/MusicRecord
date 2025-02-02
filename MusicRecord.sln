@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35521.163 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicRecord.Server", "MusicRecord.Server\MusicRecord.Server.csproj", "{5E743791-94B5-442E-AC7D-5F8AE782CA1C}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "musicrecord.client", "musicrecord.client\musicrecord.client.esproj", "{88A82BCE-2398-482F-BB13-7B16D0C2C8EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicRecord.Server.Tests", "MusicRecord.Server.Tests\MusicRecord.Server.Tests.csproj", "{BEC93655-870E-4D2D-A86B-A4ED36A12FD8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5E743791-94B5-442E-AC7D-5F8AE782CA1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E743791-94B5-442E-AC7D-5F8AE782CA1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E743791-94B5-442E-AC7D-5F8AE782CA1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E743791-94B5-442E-AC7D-5F8AE782CA1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88A82BCE-2398-482F-BB13-7B16D0C2C8EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88A82BCE-2398-482F-BB13-7B16D0C2C8EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88A82BCE-2398-482F-BB13-7B16D0C2C8EC}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{88A82BCE-2398-482F-BB13-7B16D0C2C8EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88A82BCE-2398-482F-BB13-7B16D0C2C8EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88A82BCE-2398-482F-BB13-7B16D0C2C8EC}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{BEC93655-870E-4D2D-A86B-A4ED36A12FD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEC93655-870E-4D2D-A86B-A4ED36A12FD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEC93655-870E-4D2D-A86B-A4ED36A12FD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEC93655-870E-4D2D-A86B-A4ED36A12FD8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
