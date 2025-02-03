@@ -29,6 +29,7 @@ const ArtistList: React.FC = () => {
         fetchArtists();
     }, []);
 
+    // Handle artist deletion
     const handleDelete = async (id: number) => {
         try {
             await ArtistService.deleteArtist(id);
@@ -37,25 +38,29 @@ const ArtistList: React.FC = () => {
             setError('Failed to delete artist: ' + err);
         }
     };
-
+    // Handle artist update initiation
     const handleUpdate = (id: number) => {
         setUpdatingArtistId(id);
     };
 
+    // Handle artist creation initiation
     const handleCreate = () => {
         setCreating(true);
     };
 
+    // Handle completion of artist update
     const handleUpdateComplete = () => {
         setUpdatingArtistId(null);
         fetchArtists();
     };
 
+    // Handle completion of artist creation
     const handleCreateComplete = () => {
         setCreating(false);
         fetchArtists();
     };
 
+    // Fetch all artists (used after create/update operations)
     const fetchArtists = async () => {
         try {
             const data = await ArtistService.getAllArtists();
@@ -69,6 +74,7 @@ const ArtistList: React.FC = () => {
         }
     };
 
+    // Handle payout status change
     const handlePayoutStatusChange = async (id: number, status: boolean) => {
         try {
             console.log(status); // Debugging line
@@ -83,10 +89,12 @@ const ArtistList: React.FC = () => {
         }
     };
 
+    // Show loading state
     if (loading) {
         return <div>Loading...</div>;
     }
 
+    // Show error message if any
     if (error) {
         return <div>{error}</div>;
     }

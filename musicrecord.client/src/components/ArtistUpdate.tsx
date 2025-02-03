@@ -12,6 +12,7 @@ const ArtistUpdate: React.FC<ArtistUpdateProps> = ({ artistId, onUpdate, onCance
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
+    // Fetch artist data when component mounts or artistId changes
     useEffect(() => {
         const fetchArtist = async () => {
             try {
@@ -27,6 +28,7 @@ const ArtistUpdate: React.FC<ArtistUpdateProps> = ({ artistId, onUpdate, onCance
         fetchArtist();
     }, [artistId]);
 
+    // Handle input changes and update artist state
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (artist) {
             setArtist({
@@ -36,6 +38,7 @@ const ArtistUpdate: React.FC<ArtistUpdateProps> = ({ artistId, onUpdate, onCance
         }
     };
 
+    // Handle form submission
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 

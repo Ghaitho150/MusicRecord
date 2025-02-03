@@ -18,6 +18,7 @@ const ArtistCreate: React.FC<ArtistCreateProps> = ({ onCreate, onCancel }) => {
     });
     const [error, setError] = useState<string | null>(null);
 
+    // Handle form submission
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setArtist({
             ...artist,
@@ -34,6 +35,7 @@ const ArtistCreate: React.FC<ArtistCreateProps> = ({ onCreate, onCancel }) => {
             return;
         }
 
+        // Check if artist with the same name already exists
         try {
             const existingArtist = await ArtistService.getArtistByName(artist.artist);
             if (existingArtist) {
@@ -45,6 +47,7 @@ const ArtistCreate: React.FC<ArtistCreateProps> = ({ onCreate, onCancel }) => {
             return;
         }
 
+        // Create new artist
         try {
             await ArtistService.createArtist({
                 ...artist,
