@@ -4,7 +4,7 @@ const API_URL = `${window.location.origin}/artists`;
 
 export interface Artist {
     id: number;
-    name: string;
+    artist: string;
     rate: number;
     streams: number;
     payoutComplete: boolean;

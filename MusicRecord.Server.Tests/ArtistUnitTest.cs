@@ -30,10 +30,10 @@ namespace MusicRecord.Tests
         public async Task GetArtists_ReturnsOkResult_WithListOfArtists()
         {
             // Arrange
-            _context.Artists.AddRange(new List<Artist>
+            _context.Artists.AddRange(new List<ArtistRecord>
                 {
-                    new Artist { Id = 1, Name = "Artist1", Rate = 10, Streams = 100 },
-                    new Artist { Id = 2, Name = "Artist2", Rate = 20, Streams = 200 }
+                    new ArtistRecord { Id = 1, Artist = "Artist1", Rate = 10, Streams = 100 },
+                    new ArtistRecord { Id = 2, Artist = "Artist2", Rate = 20, Streams = 200 }
                 });
             await _context.SaveChangesAsync();
 
@@ -42,7 +42,7 @@ namespace MusicRecord.Tests
 
             // Assert
             var okResult = Assert.IsType<OkObjectResult>(result.Result);
-            var returnArtists = Assert.IsType<List<Artist>>(okResult.Value);
+            var returnArtists = Assert.IsType<List<ArtistRecord>>(okResult.Value);
             Assert.Equal(2, returnArtists.Count);
         }
 
@@ -60,7 +60,7 @@ namespace MusicRecord.Tests
         public async Task PostArtist_ReturnsBadRequest_WhenArtistAlreadyExists()
         {
             // Arrange
-            var artist = new Artist { Name = "Artist1", Rate = 10, Streams = 100 };
+            var artist = new ArtistRecord { Artist = "Artist1", Rate = 10, Streams = 100 };
             _context.Artists.Add(artist);
             await _context.SaveChangesAsync();
 

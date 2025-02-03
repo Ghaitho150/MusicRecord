@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import ArtistService, { Artist } from '../services/ArtistService';
 
-
 interface ArtistCreateProps {
     onCreate: () => void;
     onCancel: () => void;
@@ -10,7 +9,7 @@ interface ArtistCreateProps {
 const ArtistCreate: React.FC<ArtistCreateProps> = ({ onCreate, onCancel }) => {
     const [artist, setArtist] = useState<Artist>({
         id: 0,
-        name: '',
+        artist: '',
         rate: 0,
         streams: 0,
         payout: 0,
@@ -28,8 +27,15 @@ const ArtistCreate: React.FC<ArtistCreateProps> = ({ onCreate, onCancel }) => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        // Validate streams field
+        if (!Number.isInteger(Number(artist.streams))) {
+            setError('Streams must be an integer.');
+            return;
+        }
+
         try {
-            const existingArtist = await ArtistService.getArtistByName(artist.name);
+            const existingArtist = await ArtistService.getArtistByName(artist.artist);
             if (existingArtist) {
                 setError('Artist with this name already exists.');
                 return;
@@ -40,7 +46,11 @@ const ArtistCreate: React.FC<ArtistCreateProps> = ({ onCreate, onCancel }) => {
         }
 
         try {
-            await ArtistService.createArtist(artist);
+            await ArtistService.createArtist({
+                ...artist,
+                rate: Number(artist.rate),
+                streams: Number(artist.streams)
+            });
             onCreate();
         } catch (err) {
             setError('Failed to create artist: ' + err);
@@ -56,10 +66,11 @@ const ArtistCreate: React.FC<ArtistCreateProps> = ({ onCreate, onCancel }) => {
                     <label className="block text-white-700">Name:</label>
                     <input
                         type="text"
-                        name="name"
-                        value={artist.name}
+                        name="artist"
+                        value={artist.artist}
                         onChange={handleChange}
                         className="w-full px-3 py-2 border rounded-md"
+                        required
                     />
                 </div>
                 <div className="mb-4">
@@ -70,6 +81,7 @@ const ArtistCreate: React.FC<ArtistCreateProps> = ({ onCreate, onCancel }) => {
                         value={artist.rate}
                         onChange={handleChange}
                         className="w-full px-3 py-2 border rounded-md"
+                        required
                     />
                 </div>
                 <div className="mb-4">
@@ -80,6 +92,8 @@ const ArtistCreate: React.FC<ArtistCreateProps> = ({ onCreate, onCancel }) => {
                         value={artist.streams}
                         onChange={handleChange}
                         className="w-full px-3 py-2 border rounded-md"
+                        required
+                        step="1"
                     />
                 </div>
                 

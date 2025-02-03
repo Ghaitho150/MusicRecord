@@ -10,15 +10,15 @@ namespace MusicRecord.Server.Data
         {
         }
 
-        public DbSet<Artist> Artists { get; set; } = null!;
+        public DbSet<ArtistRecord> Artists { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Artist>()
+            modelBuilder.Entity<ArtistRecord>()
                 .Property(a => a.Rate)
                 .HasPrecision(12, 8);
 
-            modelBuilder.Entity<Artist>()
+            modelBuilder.Entity<ArtistRecord>()
                 .Property(a => a.Payout)
                 .HasPrecision(18, 2);
         }

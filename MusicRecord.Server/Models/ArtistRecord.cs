@@ -2,10 +2,14 @@
 
 namespace MusicRecord.Server.Models
 {
-    public class Artist
+    public class Artists
+    {
+        public required ArtistRecord[] data { get; set; }
+    }
+    public class ArtistRecord
     {
         public int Id { get; set; }
-        public required string Name { get; set; }
+        public required string Artist { get; set; }
         public required decimal Rate { get; set; }
         public required int Streams { get; set; }
         public bool PayoutComplete { get; set; }

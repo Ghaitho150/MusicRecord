@@ -122,7 +122,7 @@ const ArtistList: React.FC = () => {
                     <tbody>
                         {Array.isArray(artists) && artists.map(artist => (
                             <tr key={artist.id}>
-                                <td className="border px-4 py-2">{artist.name}</td>
+                                <td className="border px-4 py-2">{artist.artist}</td>
                                 <td className="border px-4 py-2">{artist.rate}</td>
                                 <td className="border px-4 py-2">{artist.streams}</td>
                                 <td className="border px-4 py-2">{artist.payout}</td>

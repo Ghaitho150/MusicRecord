@@ -21,14 +21,14 @@ namespace MusicRecord.Server.Controllers
 
         // POST: api/Artists/upload
         [HttpPost("upload")]
-        public async Task<IActionResult> UploadArtists([FromBody] List<Artist> Artists)
+        public async Task<IActionResult> UploadArtists([FromBody] Artists Artists)
         {
             try
             {
                 // Check if the artists already exist, if exist update the rate and streams, else insert the new artist
-                foreach (var artist in Artists)
+                foreach (var artist in Artists.data)
                 {
-                    var existingArtist = await _context.Artists.FirstOrDefaultAsync(a => a.Name == artist.Name);
+                    var existingArtist = await _context.Artists.FirstOrDefaultAsync(a => a.Artist == artist.Artist);
                     if (existingArtist != null)
                     {
                         existingArtist.Rate = artist.Rate;
@@ -54,10 +54,10 @@ namespace MusicRecord.Server.Controllers
 
         // POST: api/Artists/create
         [HttpPost("create")]
-        public async Task<ActionResult<Artist>> PostArtist(Artist artist)
+        public async Task<ActionResult<ArtistRecord>> PostArtist(ArtistRecord artist)
         {
             // Prevent the creation of an artist with the same name
-            var existingArtist = await _context.Artists.FirstOrDefaultAsync(a => a.Name == artist.Name);
+            var existingArtist = await _context.Artists.FirstOrDefaultAsync(a => a.Artist == artist.Artist);
             if (existingArtist != null)
             {
                 return BadRequest(new { message = "Artist already exists" });
@@ -74,7 +74,7 @@ namespace MusicRecord.Server.Controllers
 
         // GET: api/Artists
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Artist>>> GetArtists()
+        public async Task<ActionResult<IEnumerable<ArtistRecord>>> GetArtists()
         {
             try
             {
@@ -92,12 +92,12 @@ namespace MusicRecord.Server.Controllers
 
         // GET: api/Artists/name
         [HttpGet("name/{name}")]
-        public async Task<ActionResult<Artist>> GetArtist(string name)
+        public async Task<ActionResult<ArtistRecord>> GetArtist(string name)
         {
             try
             {
                 // Retrieve a specific artist by name
-                var artist = await _context.Artists.FirstOrDefaultAsync(a => a.Name == name);
+                var artist = await _context.Artists.FirstOrDefaultAsync(a => a.Artist == name);
                 if (artist == null)
                 {
                     return NotFound();
@@ -112,7 +112,7 @@ namespace MusicRecord.Server.Controllers
 
         // GET: api/Artists/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Artist>> GetArtist(int id)
+        public async Task<ActionResult<ArtistRecord>> GetArtist(int id)
         {
             try
             {
@@ -134,7 +134,7 @@ namespace MusicRecord.Server.Controllers
 
         // PUT: api/Artists/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutArtist(int id, Artist artist)
+        public async Task<IActionResult> PutArtist(int id, ArtistRecord artist)
         {
             try
             {

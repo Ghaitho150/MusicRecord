@@ -38,9 +38,20 @@ const ArtistUpdate: React.FC<ArtistUpdateProps> = ({ artistId, onUpdate, onCance
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        // Validate streams field
+        if (artist && !Number.isInteger(Number(artist.streams))) {
+            setError('Streams must be an integer.');
+            return;
+        }
+
         if (artist) {
             try {
-                await ArtistService.updateArtist(artistId, artist);
+                await ArtistService.updateArtist(artistId, {
+                    ...artist,
+                    rate: Number(artist.rate),
+                    streams: Number(artist.streams)
+                });
                 onUpdate();
             } catch (err) {
                 setError('Failed to update artist: ' + err);
@@ -66,7 +77,7 @@ const ArtistUpdate: React.FC<ArtistUpdateProps> = ({ artistId, onUpdate, onCance
                         <input
                             type="text"
                             name="name"
-                            value={artist.name}
+                            value={artist.artist}
                             onChange={handleChange}
                             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                             readOnly
@@ -80,6 +91,7 @@ const ArtistUpdate: React.FC<ArtistUpdateProps> = ({ artistId, onUpdate, onCance
                             value={artist.rate}
                             onChange={handleChange}
                             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                            required
                         />
                     </div>
                     <div className="mb-4">
@@ -90,6 +102,8 @@ const ArtistUpdate: React.FC<ArtistUpdateProps> = ({ artistId, onUpdate, onCance
                             value={artist.streams}
                             onChange={handleChange}
                             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                            required
+                            step="1"
                         />
                     </div>
                     <div className="flex justify-between">
